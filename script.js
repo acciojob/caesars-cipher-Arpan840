@@ -35,7 +35,6 @@ function rot13(encodedStr) {
   let decodedArr = []; 
 	for(i=0;i<encodedStr.length;i++)
 		{
-			let char=encodedStr[i].toUpperCase();
 			if(lookup[char]===undefined)
 			{
 				decodedArr.push(char)
