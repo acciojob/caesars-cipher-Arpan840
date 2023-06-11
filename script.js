@@ -31,19 +31,32 @@ const lookup = {
   ",": ",",
 };
 
-function rot13(encodedStr) {
-  let decodedArr = []; 
-	  let test= encodedStr.split("")
-       test.forEach((i)=>{
-           if(lookup[i]===undefined)
-           {
-            decodedArr.push(i);
-           }
-           else{
-            decodedArr.push(lookup[i]);
-           }
-       })
-    return decodedArr.join("");
+function rot13(str) {
+var decoded = '';
+
+for (var i = 0; i < str.length; i++) {
+var char = str[i];
+
+if (char.match(/[A-Z]/)) {
+var code = str.charCodeAt(i);
+var decodedChar;
+
+if (code >= 65 && code <= 77) {
+// Letters A-M
+decodedChar = String.fromCharCode(code + 13);
+} else if (code >= 78 && code <= 90) {
+// Letters N-Z
+decodedChar = String.fromCharCode(code - 13);
+}
+
+decoded += decodedChar;
+} else {
+// Non-alphabetic character, pass it as it is
+decoded += char;
+}
+}
+
+return decoded;
 }
 
 // You can test your code by running the above function and printing it to console by pressing the run button at the top. To run it with input 36, uncomment the following line
